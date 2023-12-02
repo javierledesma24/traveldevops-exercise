@@ -64,24 +64,13 @@ else
     
     # Crear DB, usuario y otorgarle permisos
     echo -e "\n${LBLUE}Configurando base de datos...${NC}"
-    
-    #comandos_sql="CREATE DATABASE devopstravel;
-    #CREATE USER 'codeuser'@'localhost' IDENTIFIED BY 'codepass';
-    #GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
-    #FLUSH PRIVILEGES;"
-
+        
     mysql -e "CREATE DATABASE devopstravel;
     CREATE USER 'codeuser'@'localhost' IDENTIFIED BY 'codepass';
     GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
     FLUSH PRIVILEGES;"
         
-    # Comprobacion de Base de Datos
-    #echo -e "\n${LGREEN}Prueba de Base de Datos Creada${NC}"
-    #echo
-    #mysql -e "USE devopstravel;
-    #SHOW TABLES;
-    #SELECT * FROM booking;"
-    if [ $? -eq 0 ];then
+if [ $? -eq 0 ];then
         echo -e "\n${LBLUE}Base de Datos Configurada${NC}"
     else 
         echo -e "\n${LRED}Error en Configuracion de Base Datos${NC}"
@@ -97,18 +86,19 @@ else
     apt-get install -y apache2 > /dev/null
     apt-get install -y php libapache2-mod-php php-mysql php-mbstring php-zip php-gd php-json php-curl > /dev/null 
     echo -e "\n${LGREEN}Apache2 Instalado${NC}"
-    echo
-    
-    systemctl start apache2
-    systemctl enable apache2
-    echo -e "\n${LGREEN}Estado de Apache2"
-    echo -e "\n${PINK}"
-    echo 
-    systemctl status apache2 | cat
-    echo -e "\n${NC}"
-
-    mv /var/www/html/index.html /var/www/html/index.html.bkp
+    echo        
 fi
+
+# Inciar Apache2
+systemctl start apache2
+systemctl enable apache2
+echo -e "\n${LGREEN}Estado de Apache2"
+echo -e "\n${PINK}"
+echo 
+systemctl status apache2 | cat
+echo -e "\n${NC}"
+
+mv /var/www/html/index.html /var/www/html/index.html.bkp
 
 # Comprobar si la carpeta del repo existe
 if [ -d "$repo" ]; then
