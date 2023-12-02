@@ -26,6 +26,16 @@ echo -e "\n${LYELLOW}Actualizando Repositorios...${NC}"
 apt-get update > /dev/null
 echo -e "\n${LGREEN}El Repositorio se encuentra Actualizado${NC}"
 
+# Instalar curl
+if dpkg -s curl > /dev/null 2>&1; then
+    echo -e "\n${LBLUE}Curl ya se encuentra Instalado${NC}"
+else 
+    echo -e "\n${LYELLOW}Instalando Curl...${NC}"
+    apt-get install curl -y > /dev/null
+    echo -e "\n${LGREEN}Curl Instalado${NC}"
+fi
+
+
 # Instalar git
 if dpkg -s git > /dev/null 2>&1; then
     echo -e "\n${LBLUE}GIT ya se encuentra Instalado${NC}"
