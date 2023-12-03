@@ -80,7 +80,7 @@ fi
 # Deployar y Configurar Web
 
 if dpkg -s apache2 > /dev/null 2>&1; then
-    echo -e "\n${LBLUE}Apache2 ya se encuentra instalado${NC}"
+    echo -e "\n${LBLUE}Apache2 ya se encuentra instalado${NC}"    
 else    
     echo -e "\n${LYELLOW}Se esta instalando apache2...${NC}"
     apt-get install -y apache2 > /dev/null
@@ -89,7 +89,7 @@ else
     echo        
 fi
 
-# Inciar Apache2
+# Iniciar Apache2
 systemctl start apache2
 systemctl enable apache2
 echo -e "\n${LGREEN}Estado de Apache2"
@@ -98,14 +98,16 @@ echo
 systemctl status apache2 | cat
 echo -e "\n${NC}"
 
-mv /var/www/html/index.html /var/www/html/index.html.bkp
+# Comprobar si existe index.html
+if [ -e /var/www/html/index.html ]; then
+    echo "Existe el archivo index.html"
+    mv /var/www/html/index.html /var/www/html/index.html.bkp
+fi
 
 # Comprobar si la carpeta del repo existe
 if [ -d "$repo" ]; then
     echo -e "\n${LBLUE}La carpeta $repo existe${NC}"
     echo -e "\n${LYELLOW}Actualizando WEB...${NC}"
-    #rm -rf $repo
-    #git pull https://github.com/roxsross/$repo.git 
     cd $repo
     git pull
     cd ..
