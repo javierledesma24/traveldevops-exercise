@@ -4,7 +4,7 @@
 repo="bootcamp-devops-2023"
 rama="clase2-linux-bash"
 USERID=$(id -u)
-WEBHOOK_URL="https://discord.com/api/webhooks/1180284341293695067/b_Ga89_4pgyA1Km6pCdFuXYjSvAhn6ZaP6zPsvTwUNWjQMboM759lOKjntjay2wo61Rk"
+WEBHOOK_URL="https://discord.com/api/webhooks/1154865920741752872/au1jkQ7v9LgQJ131qFnFqP-WWehD40poZJXRGEYUDErXHLQJ_BBszUFtVj8g3pu9bm7h"
 
 # Colores
 LRED='\033[1;31m'
