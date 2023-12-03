@@ -20,6 +20,12 @@ if [ "${USERID}" -ne 0 ]; then
     exit
 fi 
 
+# Comprobar que se introducido la clave de la base de datos como parametro
+if [ $# -ne 1 ]; then
+    echo -e "\n${LRED}No se proporciono la contraseña de la DB${NC}"
+    exit
+fi 
+
 
 # Actualizar repositorios
 echo -e "\n${LYELLOW}Actualizando Repositorios...${NC}"
@@ -66,7 +72,7 @@ else
     echo -e "\n${LBLUE}Configurando base de datos...${NC}"
         
     mysql -e "CREATE DATABASE devopstravel;
-    CREATE USER 'codeuser'@'localhost' IDENTIFIED BY 'codepass';
+    CREATE USER 'codeuser'@'localhost' IDENTIFIED BY '$1';
     GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
     FLUSH PRIVILEGES;"
         
